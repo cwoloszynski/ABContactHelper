@@ -17,11 +17,8 @@ static ABAddressBookRef shared = NULL;
 {
     @synchronized (self) {
         if (!shared) {
-            if (ABAddressBookCreateWithOptions == NULL) {
-                shared = ABAddressBookCreate();
-            } else {
-                shared = ABAddressBookCreateWithOptions(NULL, NULL);
-            }
+            shared = ABAddressBookCreateWithOptions(NULL, NULL);
+        
             if (![self hasAddressBookAccess:shared]) {
                 //TODO: show beautiful alert
                 shared = NULL;
@@ -78,7 +75,7 @@ static ABAddressBookRef shared = NULL;
         }
     });
     dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-    dispatch_release(semaphore);
+    // dispatch_release(semaphore);
     semaphore = NULL;
     
     return accessGranted;
