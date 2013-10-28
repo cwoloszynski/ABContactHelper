@@ -27,7 +27,7 @@
 + (int) numberOfGroups;
 
 // Sorting
-+ (BOOL) firstNameSorting;
+// + (BOOL) firstNameSorting;
 
 // Add contacts and groups
 + (BOOL) addContact: (ABContact *) aContact withError: (NSError **) error;

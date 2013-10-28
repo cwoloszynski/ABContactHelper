@@ -88,10 +88,10 @@
 #pragma mark Sorting
 
 // Sorting
-+ (BOOL) firstNameSorting
-{
-    return (ABPersonGetCompositeNameFormat() == kABPersonCompositeNameFormatFirstNameFirst);
-}
+//+ (BOOL) firstNameSorting
+//{
+//    return (ABPersonGetCompositeNameFormat() == kABPersonCompositeNameFormatFirstNameFirst);//
+//}
 
 #pragma mark Contact Management
 
