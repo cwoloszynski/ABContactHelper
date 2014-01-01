@@ -434,7 +434,16 @@
     NSMutableArray *labels = [NSMutableArray array];
     for (int i = 0; i < ABMultiValueGetCount(theProperty); i++)
     {
-        NSString *label = (__bridge_transfer NSString *)ABMultiValueCopyLabelAtIndex(theProperty, i);
+        CFStringRef phoneNumberLabel = ABMultiValueCopyLabelAtIndex(theProperty, i);
+        NSString * label = @"unknown";
+        
+        if (phoneNumberLabel != NULL) {
+            // converts "_$!<Work>!$_" to "work" and "_$!<Mobile>!$_" to "mobile"
+            CFStringRef phoneNumberLocalizedLabel = ABAddressBookCopyLocalizedLabel(phoneNumberLabel);
+            CFRelease(phoneNumberLabel);
+            label = (__bridge_transfer NSString *)phoneNumberLocalizedLabel;
+
+        }
         [labels addObject:label];
     }
     CFRelease(theProperty);
